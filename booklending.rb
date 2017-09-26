@@ -25,12 +25,13 @@ class Book
   end
 
 # #true if book borrowed, false otherwise
-#   def lent_out?
-#     if @title.borrowed
-#       puts "Sorry, it's out!"
-#     else
-#       puts "We got it!"
-#   end
+  def lent_out?
+    if @@on_shelf
+      return true
+    else
+      false
+    end
+  end
 
 #CLASS METHODS ---------------------------------------------------------------
 
@@ -63,9 +64,9 @@ class Book
   end
 #
 #
-#   def self.borrowed
-#     return @@on_loan
-#   end
+  def self.borrowed
+    return @@on_loan
+  end
 
 
 
@@ -77,3 +78,12 @@ aint_i = Book.create("Ain't I a Woman?", "Bell Hooks", "9780896081307")
 if_they_come = Book.create("If They Come in the Morning", "Angela Y. Davis", "0893880221")
 
 puts Book.browse.inspect
+puts Book.browse.inspect
+puts Book.browse.inspect
+
+puts Book.available.inspect
+puts Book.borrowed.inspect
+
+puts sister_outsider.lent_out?
+puts aint_i.lent_out?
+puts if_they_come.lent_out?
