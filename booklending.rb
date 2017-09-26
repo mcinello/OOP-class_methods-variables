@@ -3,10 +3,6 @@ class Book
 @@on_shelf =[] #collection of books available to lend out
 @@on_loan =[] #books currently being borrowed
 
-  def self.due_date
-
-  end
-
 
   def initialize(title, author, isbn)
     @title = title
@@ -14,15 +10,29 @@ class Book
     @isbn = isbn
   end
 
+  def due_date
+    @due_date
+  end
+
+  def due_date(reset)
+    @due_date = reset
+  end
 
   def borrow
-
+    if self.lent_out? == true
+      return false
+    else
+      Book.current_due_date
+      @@on_shelf.delete(self)
+      @@on_loan << self
+      return true
+    end
   end
 
 
-  def return_to_library
-
-  end
+  # def return_to_library
+  #
+  # end
 
 # #true if book borrowed, false otherwise
   def lent_out?
@@ -43,10 +53,9 @@ class Book
   end
 
 #
-#   def self.current_due_date
-#
-#   end
-#
+  def self.current_due_date
+    due_date = Time.now + 1.814e+6
+  end
 #
 #   def self.overdue_books
 #
@@ -77,13 +86,13 @@ sister_outsider = Book.create("Sister Outsider", "Audre Lorde", "9781515905431")
 aint_i = Book.create("Ain't I a Woman?", "Bell Hooks", "9780896081307")
 if_they_come = Book.create("If They Come in the Morning", "Angela Y. Davis", "0893880221")
 
-puts Book.browse.inspect
-puts Book.browse.inspect
-puts Book.browse.inspect
+# puts Book.browse.inspect
+# puts Book.browse.inspect
+# puts Book.browse.inspect
 
 puts Book.available.inspect
 puts Book.borrowed.inspect
 
 puts sister_outsider.lent_out?
-puts aint_i.lent_out?
-puts if_they_come.lent_out?
+puts sister_outsider.borrow
+puts Book.available.inspect
