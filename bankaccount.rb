@@ -2,18 +2,19 @@ class BankAccount
   # @@interest_rate.to_f = 4.5 #float rate
   @@accounts = [] #store list of all bank accounts in bank
   @@total_funds = 0.00
+  @@interest_rate = (2.5 / 100)
 
   def initialize
     @balance = 0.00
   end
 
   def deposit(amount)
-    @balance += amount
+    @balance += amount.to_f
     return @balance
   end
 
   def withdraw(amount)
-    @balance -= amount
+    @balance -= amount.to_f
     return @balance
   end
 
@@ -41,11 +42,12 @@ class BankAccount
 
   #CLASS METHOD
   #go through each account and increase balance based on interest_rate
-  # def interest_time
-  #   @@accounts.each do |account|
-  #     @balance += (@balance * @@interest_rate)
-  #   end
-  # end
+  def self.interest_time
+    @@accounts.each do |account|
+      account.deposit(account.balance * @@interest_rate)
+    end
+  end
+
   def self.accounts
     return @@accounts
   end
@@ -66,14 +68,22 @@ your_account.deposit(1000)
 # puts my_account.balance # 200
 # puts your_account.balance # 1000
 
-puts BankAccount.accounts.inspect
-puts BankAccount.total_funds.inspect
+# puts BankAccount.accounts.inspect
+# puts BankAccount.total_funds
+# puts BankAccount.interest_time
+
+# puts BankAccount.balance.inspect
 
 # puts BankAccount.total_funds # 1200
-# # BankAccount.interest_time
-# puts my_account.balance # 202.0
-# puts your_account.balance # 1010.0
-# puts BankAccount.total_funds # 1212.0
-# my_account.withdraw(50)
-# puts my_account.balance # 152.0
-# puts BankAccount.total_funds # 1162.0
+# BankAccount.interest_time
+# puts my_account.balance
+# puts your_account.balance
+# puts BankAccount.accounts.inspect
+
+
+# puts BankAccount.total_funds
+my_account.withdraw(50)
+puts BankAccount.accounts.inspect
+
+# puts my_account.balance
+puts BankAccount.total_funds
