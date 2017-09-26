@@ -1,5 +1,3 @@
-require 'pry'
-
 class BankAccount
   # @@interest_rate.to_f = 4.5 #float rate
   @@accounts = [] #store list of all bank accounts in bank
