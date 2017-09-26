@@ -1,6 +1,7 @@
 class BankAccount
   # @@interest_rate.to_f = 4.5 #float rate
   @@accounts = [] #store list of all bank accounts in bank
+  @@total_funds = 0.00
 
   def initialize
     @balance = 0.00
@@ -31,13 +32,12 @@ class BankAccount
 
 #CLASS METHOD
 #add all balances from every account
-  # def self.total_funds
-  #   @@accounts.each do |each_account|
-  #     sum = 0
-  #     sum += @balance
-  #     puts sum
-  #   end
-  # end
+  def self.total_funds
+    @@accounts.each do |each_account|
+    @@total_funds += each_account.balance
+    end
+    return @@total_funds
+  end
 
   #CLASS METHOD
   #go through each account and increase balance based on interest_rate
@@ -46,9 +46,9 @@ class BankAccount
   #     @balance += (@balance * @@interest_rate)
   #   end
   # end
-def self.accounts
-  return @@accounts
-end
+  def self.accounts
+    return @@accounts
+  end
 
 end
 
@@ -56,16 +56,18 @@ end
 my_account = BankAccount.create
 your_account = BankAccount.create
 
-puts BankAccount.accounts.inspect
-
+# puts BankAccount.accounts.inspect
 
 # puts my_account.balance # 0
 # puts BankAccount.total_funds # 0
 
 my_account.deposit(200)
 your_account.deposit(1000)
-puts my_account.balance # 200
-puts your_account.balance # 1000
+# puts my_account.balance # 200
+# puts your_account.balance # 1000
+
+puts BankAccount.accounts.inspect
+puts BankAccount.total_funds.inspect
 
 # puts BankAccount.total_funds # 1200
 # # BankAccount.interest_time
