@@ -27,9 +27,9 @@ class Book
 # #true if book borrowed, false otherwise
   def lent_out?
     if @@on_shelf
-      return true
+      return false
     else
-      false
+      true
     end
   end
 
