@@ -36,10 +36,12 @@ class Book
 
 # #true if book borrowed, false otherwise
   def lent_out?
-    if @@on_shelf
-      return false
-    else
-      true
+    @@on_shelf.each do |book|
+      if self == book
+        return false
+      else
+        return true
+      end
     end
   end
 
@@ -96,3 +98,4 @@ puts Book.borrowed.inspect
 puts sister_outsider.lent_out?
 puts sister_outsider.borrow
 puts Book.available.inspect
+puts sister_outsider.lent_out?
