@@ -11,12 +11,13 @@ class Book
   end
 
   def due_date
-    @due_date
+    @due_date = Book.current_due_date
+    return @due_date
   end
 
-  def due_date(reset)
-    @due_date = reset
-  end
+  # def due_date(reset)
+  #   @due_date = reset
+  # end
 
   def borrow
     if self.lent_out? == true
@@ -56,7 +57,7 @@ class Book
 
 #
   def self.current_due_date
-    due_date = Time.now + 1.814e+6
+    Time.now + 1.814e+6
   end
 #
 #   def self.overdue_books
@@ -99,3 +100,6 @@ puts sister_outsider.lent_out?
 puts sister_outsider.borrow
 puts Book.available.inspect
 puts sister_outsider.lent_out?
+puts sister_outsider.borrow
+puts Book.borrowed.inspect
+puts sister_outsider.due_date.inspect
