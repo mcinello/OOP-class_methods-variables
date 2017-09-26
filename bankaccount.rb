@@ -3,18 +3,23 @@ class BankAccount
   @@accounts = [] #store list of all bank accounts in bank
 
   def initialize
-    @balance = 0
+    @balance = 0.00
   end
 
-  def deposit(number)
-    @balance += number
+  def deposit(amount)
+    @balance += amount
     return @balance
   end
 
-  def withdraw(number)
-    @balance -= number
+  def withdraw(amount)
+    @balance -= amount
     return @balance
   end
+
+  def balance
+    return @balance
+  end
+
 
 #CLASS METHOD
 #call class BankAccount to add new account to the accounts array
@@ -26,12 +31,12 @@ class BankAccount
 
 #CLASS METHOD
 #add all balances from every account
-  # def total_funds
-  #   sum = 0
+  # def self.total_funds
   #   @@accounts.each do |each_account|
-  #     sum += each_account.balance  #**************************
+  #     sum = 0
+  #     sum += @balance
+  #     puts sum
   #   end
-  #   return sum
   # end
 
   #CLASS METHOD
@@ -50,15 +55,18 @@ end
 #EG. OUTPUT
 my_account = BankAccount.create
 your_account = BankAccount.create
-puts BankAccount.accounts
+
+puts BankAccount.accounts.inspect
 
 
 # puts my_account.balance # 0
 # puts BankAccount.total_funds # 0
-# my_account.deposit(200)
-# your_account.deposit(1000)
-# puts my_account.balance # 200
-# puts your_account.balance # 1000
+
+my_account.deposit(200)
+your_account.deposit(1000)
+puts my_account.balance # 200
+puts your_account.balance # 1000
+
 # puts BankAccount.total_funds # 1200
 # # BankAccount.interest_time
 # puts my_account.balance # 202.0
