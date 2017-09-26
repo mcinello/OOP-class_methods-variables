@@ -52,10 +52,10 @@ class Book
 #   end
 #
 # #return a random book
-#   def self.browse
-#     random = @@onshelf.sample
-#     return random
-#   end
+  def self.browse
+    random = @@on_shelf.sample
+    return random
+  end
 #
 #
   def self.available
@@ -76,4 +76,4 @@ sister_outsider = Book.create("Sister Outsider", "Audre Lorde", "9781515905431")
 aint_i = Book.create("Ain't I a Woman?", "Bell Hooks", "9780896081307")
 if_they_come = Book.create("If They Come in the Morning", "Angela Y. Davis", "0893880221")
 
-puts Book.available.inspect
+puts Book.browse.inspect
