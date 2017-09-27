@@ -54,15 +54,33 @@ class Zombie
   end
 
   def ecounter
+    #3 possible outcomes
+    #1. escape unscathed
+    #2. being killed by the zombie
+    #3 catching the plague and becoming a zombie yourself
+
+    Zombie.outrun_zombie?
+    Zombie.survive_attack?
+
+    #return string of outcome
 
   end
 
   def outrun_zombie?
-
+    human_speed = @@max_speed.rand(6)
+    if human_speed > @speed
+      return true
+    else
+      return false
+    end
   end
 
   def survive_attack?
-
+    am_i_strong = @@max_strength.rand(9)
+    if am_i_strong > @strength
+      return true
+    else
+      return false
   end
 
 end
