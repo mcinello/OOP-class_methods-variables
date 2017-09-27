@@ -21,7 +21,7 @@ class Zombie
     more_zombies = Zombie.spawn
     @@horde << more_zombies
 
-    # @@plague_level = Zombie.increase_plague_level
+    @@plague_level = Zombie.increase_plague_level
   end
 
 #deletes zombies from array
@@ -39,10 +39,10 @@ class Zombie
 
   end
 
-  # def self.increase_plague_level
-  #   @@plague_level += Zombie.rand(3)
-  #   return @@plague_level
-  # end
+  def self.increase_plague_level
+    @@plague_level += rand(3)
+    return @@plague_level
+  end
 
   #INSTANCE METHODS ---------------------------------------------------
 
