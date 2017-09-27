@@ -3,7 +3,6 @@ class Book
 @@on_shelf =[] #collection of books available to lend out
 @@on_loan =[] #books currently being borrowed
 
-
   def initialize(title, author, isbn)
     @title = title
     @author = author
@@ -59,13 +58,21 @@ class Book
   def self.current_due_date
     Time.now + 1.814e+6
   end
-#
-#   def self.overdue_books
-#
-#   end
+
+#List of books dates overdue
+  def self.overdue
+    overdue_books = []
+    @@on_loan.each do |book|
+      if book.due_date < Time.now
+        overdue_books << book
+      else
+        puts "Still good to read!"
+      end
+    end
+  end
 #
 # #return a random book
-  def self.browse
+ def self.browse
     random = @@on_shelf.sample
     return random
   end
@@ -93,9 +100,9 @@ if_they_come = Book.create("If They Come in the Morning", "Angela Y. Davis", "08
 # puts Book.browse.inspect
 # puts Book.browse.inspect
 
-puts Book.available.inspect
-puts Book.borrowed.inspect
-
+# puts Book.available.inspect
+# puts Book.borrowed.inspect
+#
 puts sister_outsider.lent_out?
 puts sister_outsider.borrow
 puts Book.available.inspect
@@ -103,3 +110,5 @@ puts sister_outsider.lent_out?
 puts sister_outsider.borrow
 puts Book.borrowed.inspect
 puts sister_outsider.due_date.inspect
+
+puts Book.overdue
