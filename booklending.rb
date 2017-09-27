@@ -30,9 +30,17 @@ class Book
   end
 
 
-  # def return_to_library
-  #
-  # end
+  def return_to_library
+    if self.lent_out? == true
+      @@on_loan.delete(self)
+      @@on_shelf << self
+      @due_date = nil
+      return true
+    else
+      return false
+    end
+
+  end
 
 # #true if book borrowed, false otherwise
   def lent_out?
@@ -112,3 +120,7 @@ puts Book.borrowed.inspect
 puts sister_outsider.due_date.inspect
 
 puts Book.overdue
+
+puts sister_outsider.return_to_library
+puts Book.available.inspect
+puts Book.borrowed.inspect
