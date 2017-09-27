@@ -55,14 +55,22 @@ class Zombie
 
   def ecounter
     #3 possible outcomes
+
     #1. escape unscathed
+    if self.outrun_zombie? == true
+      puts "You escaped!"
+
     #2. being killed by the zombie
+    elsif self.survive_attack? == false && self.outrun_zombie? == false
+    puts "You dead."
+
     #3 catching the plague and becoming a zombie yourself
+    elsif self.outrun_zombie? == false
+     self.spawn
+     @@horde << self
+     puts "You need braiiiiiiiiiiiiin."
 
-    Zombie.outrun_zombie?
-    Zombie.survive_attack?
-
-    #return string of outcome
+    end
 
   end
 
