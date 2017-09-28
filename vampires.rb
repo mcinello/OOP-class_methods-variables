@@ -20,40 +20,38 @@ class Vampire
   end
 
 #drank_blood_today, means they went outside
-  def drink_blood
-    @drank_blood_today = true
+  def drink_blood?
+    @drank_blood_today
   end
 
   #if they finished drinking blood, they should go home before they sparkle
-  def go_home
-    @in_coffin = true
+  def go_home?
+    @in_coffin
   end
 
 #they sparkled. hoomans know. they need to be destroyed.
   def self.sunrise
-    @@coven.each do |vamp|
+    @@coven.delete_if do |vamp| #never use .each if you need to delete
       #if they didn't drink blood      #if they're not home
-      if !vamp.drink_blood || !vamp.go_home
-      end
-    @@coven.delete(vamp)
+    !vamp.go_home? || !vamp.drink_blood?
     end
   end
 
   #time for a huntin'
   def self.sunset
     @@coven.each do |vamp|
-        vamp.drink_blood = false
-        vamp.go_home = false
+        vamp.drink_blood(false)
+        vamp.go_home(false)
       end
     return @@coven
   end
 
-  def drink_blood=(blood)
+  def drink_blood(blood)
     @drank_blood_today = blood
       return @drank_blood_today
   end
 
-  def go_home=(coven)
+  def go_home(coven)
     @in_coffin = coven
     return @in_coffin
   end
@@ -77,7 +75,9 @@ lestat = Vampire.create('Lestat', 2000)
 
 puts Vampire.coven.inspect
 puts Vampire.sunset.inspect
-edward.drink_blood
-lestat.go_home
+edward.drink_blood(true)
+lestat.go_home(true)
 puts Vampire.coven.inspect
 puts Vampire.sunrise.inspect
+
+puts Vampire.coven.inspect
