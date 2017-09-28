@@ -1,5 +1,3 @@
-require "pry"
-
 class Zombie
 
   @@horde = [] #collection of zombies
